@@ -1,12 +1,14 @@
 'use strict';
 
+jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
+
+
 const searchUrl = 'https://tastedive.com/api/similar';
 const API_KEY = '351163-Resembli-JOGNIVRL';
-
-function formatQueryParams(query) {
-    const queryItems = Object.keys(query).map(key => `${encodeURIComponent(query[key])}`);
-    return queryItems.join('&');
-}
 
 function queryResults(query, type, maxResults) {
     let params = {
@@ -17,22 +19,27 @@ function queryResults(query, type, maxResults) {
         k: API_KEY,
     };
 
-    const queryString = formatQueryParams(params);
-    const URL = searchUrl + '?' + queryString;
+    let result = $.ajax({
+        url: searchUrl,
+        data: params,
+        dataType: "json",
+        type: "GET",
+    })
 
-    fetch(URL)
-        .then(response => {
-            if(response.ok) {
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
+    .done(function (data) {
+        if(data.Similar.Results.length == 0) {
+            errorMessage();
+            console.log('Nothing to show');
+        } else {
+            displayResults(data.Similar.Results, query);
+        }
+    })
 
-        .then(data => displayResults(data))
-
-        .catch(error => {
-            $('.error.message').text(`Something went wrong: ${error.message}`);
-        });
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    })
 }
 
 // takes search option and reveals appropriate input div
@@ -40,7 +47,7 @@ function makeSelection() {
     $('.selection').change(function() {
         let selectedId = $('option:selected, this').attr('id');
 
-        if(selectedId == "movie") {
+        if(selectedId === "movie") {
             $('.movie-div').removeClass('hidden');
             $('.results-div').removeClass('hidden');
             $('.artist-div').addClass('hidden');
@@ -49,7 +56,7 @@ function makeSelection() {
             $('.movie-title').attr("required", "required");
             $('.artist-name').removeAttr("required");
             $('.book-title').removeAttr("required");
-        } else if (selectedId == "artist") {
+        } else if (selectedId === "artist") {
             $('.artist-div').removeClass('hidden');
             $('.results-div').removeClass('hidden');
             $('.movie-div').addClass('hidden');
@@ -58,7 +65,7 @@ function makeSelection() {
             $('.artist-name').attr("required", "required");
             $('.movie-title').removeAttr("required");
             $('.book-title').removeAttr("required");
-        } else if (selectedId == "book") {
+        } else if (selectedId === "book") {
             $('.book-div').removeClass('hidden');
             $('.results-div').removeClass('hidden');
             $('.movie-div').addClass('hidden');
@@ -75,9 +82,39 @@ function makeSelection() {
 function watchLandingPage() {
 
 }
+function displayResults(data, query) {
+    console.log(data);
+    //movie results
+    if (data[0].Type === "movie") {
+        $('.results').append(`<h2>Movies like <u>${query}</u></h2>`);
+        for(let i=0;i<data.length;i++) {
+            $('.results').append(`
+            <div class="results-list "><a href="${data[i].wUrl}" target="_blank"><p class="results-title">${data[i].Name}</p></a>
+            <iframe width="300" height="220" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/${data[i].yID}"></iframe></div>`);
+        }
+    } else if (data[0].Type === "music") {
+        $('.results').append(`<h2>Artists like <u>${query}</u></h2>`);
+        for(let i=0;i<data.length;i++) {
+            $('.results').append(`
+            <div class="results-list "><a href="${data[i].wUrl}" target="_blank"><p class="results-title">${data[i].Name}</p></a>
+            <iframe width="300" height="220" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/${data[i].yID}"></iframe></div>`);
+        }
+    } else if (data[0].Type === "book") {
+        $('.results').append(`<h2>Books like <u>${query}</u></h2>`);
+        for(let i=0;i<data.length;i++) {
+            $('.results').append(`
+            <div class="results-list books"><a href="${data[i].wUrl}" target="_blank"><p class="results-title"><img src="../images/book.png" alt="icon of a book" class="book-icon">${data[i].Name}</p></a>
+            </div>`);
+        }
+    }
+
+    $('.results').removeClass('hidden');
+    
+}
+
 //render error message
 function errorMessage() {
-
+    $('.error-message').append(`<p class="error">Sorry, No matching results found!</p>`);
 }
 
 function watchForm() {
@@ -87,7 +124,8 @@ function watchForm() {
         let artistName = $('.artist-name').val();
         let bookTitle = $('.book-title').val();
         let maxResults = $('.search-results').val();
-        $('.results').empty;
+        $('.results').empty();
+        $('.error-message').empty();
 
         if(movieTitle != "") {
             let query = movieTitle;
