@@ -121,7 +121,7 @@ label {
 
 .books {
     display: block;
-    margin: 10px auto;
+    margin: 0.75rem auto;
 }
 
 .book-icon {
