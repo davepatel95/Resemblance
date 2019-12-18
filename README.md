@@ -5,7 +5,7 @@
 ## Screenshots
 
 #### Landing Page & Query Screen
-![landing page](images/landing-page)
+![landing page](/images/landing-page)
 
 
 #### Results
