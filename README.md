@@ -8,12 +8,12 @@ Ever wanted to relive the thrill and suspense of your favorite film? The sound o
 ## Screenshots
 
 #### Landing Page & Query Screen
-![landing page](/images/landing-page.png)
-![form view](/images/query-view.png)
+![landing page](/docs/images/landing-page.png)
+![form view](/docs/images/query-view.png)
 
 #### Results & Error
-![results view](/images/results.png)
-![error](/images/Error.png)
+![results view](/docs/images/results.png)
+![error](/docs/images/error.png)
 
 
 ## Technologies Used
