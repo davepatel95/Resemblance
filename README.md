@@ -6,11 +6,11 @@
 
 #### Landing Page & Query Screen
 ![landing page](/images/landing-page.png)
+![form view] (/images/query-view.png)
 
-
-#### Results
-![results of input](results-image-1.jpg)
-![results of input](results-image-2.jpg)
+#### Results & Error
+![results view](/images/results.png)
+![error](/images/error.png)
 
 ## Summary
   
