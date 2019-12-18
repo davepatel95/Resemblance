@@ -50,7 +50,7 @@ a {
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
-    background-image: url('/docs/images/landing-page.jpg');
+    background-image: url('https://davepatel95.github.io/Resemblance/docs/images/landing-page.jpg');
     position: fixed;
     top: 0;
     left: 0;
