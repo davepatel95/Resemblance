@@ -6,7 +6,7 @@
 
 #### Landing Page & Query Screen
 ![landing page](/images/landing-page.png)
-![form view] (/images/query-view.png)
+![form view](/images/query-view.png)
 
 #### Results & Error
 ![results view](/images/results.png)
