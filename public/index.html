@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="simple-grid.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/simple-grid.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Noticia+Text&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <title>Resemblance</title>
 </head>
 <body>
+    <section role="landing page">
+        <div class="landing-page fade">
+            <h2 class="landing-text animated slow flipInX">Expand your taste with something familiar!</h2>
+            <button class="landing-button" type="button" name="Go">Dive In</button>
+        </div>
+        
+    </section>
     <div class="container">
         <header>
             <div class="row">
                 <div class="col-12 center">
-                    <h1>Resemblance</h1>
+                    <h1 class="title">Resemblance</h1>
                 </div>
             </div>
         </header>
@@ -25,10 +35,10 @@
                     <form class="form center">
                         <div class="form-group">
                             <select name="model" class="form-control selection" required>
-                            <option disabled selected value>Select an Option</option>
-                            <option value="Movie" id="movie">Movie</option>
-                            <option value="Artist" id="artist">Artist</option>
-                            <option value="Book" id="book">Book</option>
+                            <option disabled selected value>Select a Media Type</option>
+                            <option value="Movie" id="movie">Movies</option>
+                            <option value="Artist" id="artist">Musicians</option>
+                            <option value="Book" id="book">Books</option>
                             </select>
                         </div>
                         <div class="form-group movie-div hidden">

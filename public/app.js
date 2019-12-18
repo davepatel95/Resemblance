@@ -80,7 +80,11 @@ function makeSelection() {
 
 //renders search page
 function watchLandingPage() {
-
+    $('.landing-button').click(event=> {
+        event.preventDefault();
+        $('.landing-page').slideUp(1000);
+        // $('.landing-page').addClass('hidden');
+    })
 }
 function displayResults(data, query) {
     console.log(data);
@@ -107,13 +111,12 @@ function displayResults(data, query) {
             </div>`);
         }
     }
-
     $('.results').removeClass('hidden');
-    
 }
 
 //render error message
 function errorMessage() {
+    $('.results').addClass('hidden');
     $('.error-message').append(`<p class="error">Sorry, No matching results found!</p>`);
 }
 
@@ -155,4 +158,5 @@ $(function() {
     watchForm();
     watchLandingPage();
     makeSelection();
+    $('.landing-button').hide().delay(2000).fadeIn(1000);
 })
