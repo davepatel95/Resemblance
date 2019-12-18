@@ -10,7 +10,7 @@
 
 #### Results & Error
 ![results view](/images/results.png)
-![error](/images/error.png)
+![error](/images/Error.png)
 
 ## Summary
   
