@@ -12,7 +12,7 @@
      z-index: -1;
      background-color: #6C9ECC;
      background-size: cover;
-     background-image: url('/images/background-image.jpg');
+     background-image: url('/docs/images/background-3.png');
  }
 body, html{
     margin: 0;
@@ -50,7 +50,7 @@ a {
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
-    background-image: url('/images/landing-page.jpg');
+    background-image: url('/docs/images/landing-page.jpg');
     position: fixed;
     top: 0;
     left: 0;
