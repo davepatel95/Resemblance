@@ -82,6 +82,7 @@ function watchLandingPage() {
   $(".landing-button").click(event => {
     event.preventDefault();
     $(".landing-page").slideUp(1000);
+    $(".container").removeClass("hidden");
     // $('.landing-page').addClass('hidden');
   });
 }
@@ -156,8 +157,8 @@ function watchForm() {
 
 $(function() {
   console.log("App loaded. Waiting on query");
-  watchForm();
   watchLandingPage();
+  watchForm();
   makeSelection();
   $(".landing-button")
     .hide()
