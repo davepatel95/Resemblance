@@ -183,6 +183,27 @@ label {
   display: block;
 }
 
+@media only screen and (max-width: 1023px) {
+  .results-list {
+    width: 80%;
+  }
+  .title {
+    letter-spacing: 1rem;
+    font-size: 3rem;
+  }
+  .error-message > p {
+    font-size: 2rem;
+  }
+  .landing-page {
+    margin: 0 auto;
+  }
+  .landing-title {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   header {
     width: 100%;
@@ -224,26 +245,5 @@ label {
   }
   .error-message > p {
     font-size: 1.5rem;
-  }
-}
-
-@media only screen and (max-width: 1023px) {
-  .results-list {
-    width: 80%;
-  }
-  .title {
-    letter-spacing: 1rem;
-    font-size: 3rem;
-  }
-  .error-message > p {
-    font-size: 2rem;
-  }
-  .landing-page {
-    margin: 0 auto;
-  }
-  .landing-title {
-    text-align: center;
-    width: 70%;
-    margin: 0 auto;
   }
 }
